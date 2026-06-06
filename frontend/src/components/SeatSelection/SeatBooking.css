@@ -1,0 +1,692 @@
+/* ==========================================
+   SEAT BOOKING - CLEAN VERSION (NO GROUP BOOKING)
+   ========================================== */
+
+.seat-booking-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.booking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.booking-header h2 {
+    font-size: 28px;
+    color: #1e293b;
+}
+
+/* ==========================================
+   LEGEND SECTION
+   ========================================== */
+
+.seat-legend {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #475569;
+}
+
+/* ==========================================
+   DRIVER SECTION
+   ========================================== */
+
+.driver-section {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #475569 0%, #334155 100%);
+    border-radius: 12px;
+}
+
+.driver-icon {
+    font-size: 48px;
+    margin-bottom: 8px;
+}
+
+.driver-text {
+    font-size: 14px;
+    color: #cbd5e1;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* ==========================================
+   SEAT MATRIX
+   ========================================== */
+
+.seat-matrix {
+    background: #f8fafc;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.seat-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.row-number {
+    width: 40px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: #64748b;
+}
+
+.seats-container {
+    display: flex;
+    gap: 12px;
+    flex: 1;
+    align-items: center;
+}
+
+.aisle {
+    width: 60px;
+    text-align: center;
+    font-size: 11px;
+    color: #94a3b8;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* ==========================================
+   SEAT STYLES
+   ========================================== */
+
+.seat {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid transparent;
+}
+
+.seat-icon {
+    font-size: 24px;
+    margin-bottom: 2px;
+}
+
+.seat-label {
+    font-size: 11px;
+}
+
+/* Flag indicator on restricted seats */
+.seat-flag {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 14px;
+    animation: wave 2s ease-in-out infinite;
+}
+
+@keyframes wave {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-15deg); }
+    75% { transform: rotate(15deg); }
+}
+
+/* ==========================================
+   SEAT STATES
+   ========================================== */
+
+/* Available Seat - Green */
+.seat-available {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    border-color: #10b981;
+    color: #065f46;
+}
+
+.seat-available:hover {
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
+}
+
+/* Women Reserved - Bright Pink */
+.seat-women-reserved {
+    background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+    border-color: #ec4899;
+    color: #be123c;
+}
+
+.seat-women-reserved:hover {
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 6px 16px rgba(236, 72, 153, 0.3);
+}
+
+/* Female Only (FLAG) - Yellow/Orange Warning */
+.seat-female-only {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-color: #f59e0b;
+    color: #92400e;
+}
+
+.seat-female-only:hover {
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 6px 16px rgba(245, 158, 11, 0.3);
+}
+
+/* Booked Male - Blue */
+.seat-booked-male {
+    background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%);
+    border-color: #3b82f6;
+    color: #1e40af;
+    cursor: not-allowed;
+}
+
+/* Booked Female - Pink */
+.seat-booked-female {
+    background: linear-gradient(135deg, #fce7f3 0%, #f9a8d4 100%);
+    border-color: #ec4899;
+    color: #be185d;
+    cursor: not-allowed;
+}
+
+/* Booked Other - Gray */
+.seat-booked-other {
+    background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+    border-color: #6b7280;
+    color: #374151;
+    cursor: not-allowed;
+}
+
+/* Selected Seat - Purple */
+.seat-selected {
+    background: linear-gradient(135deg, #ddd6fe 0%, #c4b5fd 100%);
+    border-color: #8b5cf6;
+    color: #5b21b6;
+    transform: scale(1.1);
+    animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1.1); }
+    50% { transform: scale(1.15); }
+}
+
+/* ==========================================
+   PASSENGER DETAILS SECTION
+   ========================================== */
+
+.passenger-details-section {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    border: 2px solid #e2e8f0;
+}
+
+.passenger-details-section h3 {
+    font-size: 24px;
+    color: #1e293b;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.passenger-card {
+    background: #f8fafc;
+    padding: 25px;
+    border-radius: 12px;
+    border: 2px solid #e2e8f0;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.passenger-card:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.passenger-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.passenger-card-header h4 {
+    font-size: 18px;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.female-only-badge {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    color: #92400e;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    border: 2px solid #f59e0b;
+}
+
+.warning-box {
+    background: #fef3c7;
+    border: 2px solid #f59e0b;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #92400e;
+    line-height: 1.6;
+}
+
+.restriction-reason {
+    font-size: 12px;
+    color: #78350f;
+    margin-top: 8px;
+    padding-left: 20px;
+}
+
+/* ==========================================
+   FORM ELEMENTS
+   ========================================== */
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.form-group label small {
+    color: #f59e0b;
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group select {
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-group input:disabled,
+.form-group select:disabled {
+    background: #fef3c7;
+    cursor: not-allowed;
+    border-color: #f59e0b;
+}
+
+/* ==========================================
+   BOOKING ACTIONS
+   ========================================== */
+
+.booking-actions {
+    margin-top: 30px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background: #ffffff;
+    color: #667eea;
+    border: 2px solid #667eea;
+}
+
+.btn-secondary:hover {
+    background: #f8fafc;
+}
+
+/* ==========================================
+   CONFIRMATION MODAL
+   ========================================== */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: white;
+    border-radius: 16px;
+    padding: 0;
+    max-width: 550px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+    padding: 25px 30px;
+    border-radius: 16px 16px 0 0;
+    border-bottom: 4px solid #b45309;
+}
+
+.modal-header h3 {
+    font-size: 22px;
+    color: #fff;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.warning-icon-large {
+    font-size: 64px;
+    text-align: center;
+    margin-bottom: 20px;
+    animation: pulse-warning 2s infinite;
+}
+
+@keyframes pulse-warning {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.seat-info-box {
+    background: #f3f4f6;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.seat-number {
+    display: inline-block;
+    background: #667eea;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    margin-left: 8px;
+}
+
+.confirmation-message {
+    line-height: 1.8;
+    color: #475569;
+}
+
+.confirmation-message p {
+    margin-bottom: 15px;
+}
+
+.main-warning {
+    font-size: 18px;
+    color: #dc2626;
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.warning-highlight {
+    background: #fef3c7;
+    border: 2px solid #f59e0b;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 20px 0;
+    color: #78350f;
+    font-weight: 600;
+}
+
+.question-text {
+    font-size: 17px;
+    color: #1f2937;
+    text-align: center;
+    margin: 20px 0;
+    padding: 20px;
+    background: #f9fafb;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.last-seat-warning {
+    background: #fee2e2;
+    border: 2px solid #dc2626;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 20px 0;
+    text-align: center;
+    color: #991b1b;
+    animation: warning-pulse 2s infinite;
+}
+
+@keyframes warning-pulse {
+    0%, 100% { background: #fee2e2; }
+    50% { background: #fecaca; }
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    padding: 0 30px 30px 30px;
+}
+
+.modal-actions .btn {
+    flex: 1;
+}
+
+.no-seats-message {
+    background: #fef3c7;
+    border-top: 2px solid #f59e0b;
+    padding: 16px 30px;
+    margin: 0 -30px -30px -30px;
+    border-radius: 0 0 16px 16px;
+    text-align: center;
+}
+
+.no-seats-message small {
+    color: #78350f;
+    font-size: 13px;
+    line-height: 1.6;
+    display: block;
+}
+
+/* ==========================================
+   LOADING OVERLAY
+   ========================================== */
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.loading-spinner {
+    background: white;
+    padding: 30px 50px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+
+@media (max-width: 768px) {
+    .seat-booking-container {
+        padding: 20px;
+    }
+
+    .booking-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .seat-legend {
+        grid-template-columns: 1fr;
+    }
+
+    .seat {
+        width: 50px;
+        height: 50px;
+    }
+
+    .seat-icon {
+        font-size: 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+        width: 95%;
+        max-height: 95vh;
+    }
+
+    .modal-header {
+        padding: 20px;
+    }
+
+    .modal-header h3 {
+        font-size: 20px;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
+    .warning-icon-large {
+        font-size: 48px;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+        padding: 0 20px 20px 20px;
+    }
+
+    .modal-actions .btn {
+        width: 100%;
+    }
+
+    .no-seats-message {
+        padding: 12px 20px;
+        margin: 0 -20px -20px -20px;
+    }
+}

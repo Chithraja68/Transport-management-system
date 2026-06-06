@@ -1,0 +1,343 @@
+/* Existing styles... (keep all your existing CSS) */
+
+.booking-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.loading-spinner,
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #d84e55;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ... rest of existing styles ... */
+
+/* ==========================================
+   CUSTOM CONFIRMATION MODAL STYLES
+   ========================================== */
+
+.modal-overlay-custom {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content-custom {
+  background: white;
+  border-radius: 16px;
+  padding: 0;
+  max-width: 550px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-header-custom {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  padding: 25px 30px;
+  border-radius: 16px 16px 0 0;
+  border-bottom: 4px solid #b45309;
+}
+
+.modal-header-custom h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-body-custom {
+  padding: 30px;
+}
+
+.warning-icon-large {
+  font-size: 64px;
+  text-align: center;
+  margin-bottom: 20px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.seat-info-box {
+  background: #f3f4f6;
+  border: 2px solid #d1d5db;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.seat-number {
+  display: inline-block;
+  background: #667eea;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+.warning-message {
+  margin-bottom: 20px;
+}
+
+.main-warning {
+  font-size: 18px;
+  color: #dc2626;
+  text-align: center;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.info-box-modal {
+  background: #fef3c7;
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 20px 0;
+  color: #78350f;
+  line-height: 1.6;
+}
+
+.info-box-modal p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.explanation-text {
+  font-size: 15px;
+  color: #4b5563;
+  line-height: 1.8;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.question-text {
+  font-size: 17px;
+  color: #1f2937;
+  text-align: center;
+  margin: 20px 0;
+  padding: 20px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.last-seat-warning {
+  background: #fee2e2;
+  border: 2px solid #dc2626;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 20px 0;
+  text-align: center;
+  color: #991b1b;
+  animation: warningPulse 2s infinite;
+}
+
+@keyframes warningPulse {
+  0%, 100% {
+    background: #fee2e2;
+  }
+  50% {
+    background: #fecaca;
+  }
+}
+
+.modal-actions-custom {
+  display: flex;
+  gap: 12px;
+  padding: 0 30px 30px 30px;
+}
+
+.btn-cancel-custom,
+.btn-confirm-custom {
+  flex: 1;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-cancel-custom {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.btn-cancel-custom:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+}
+
+.btn-cancel-custom:active {
+  transform: translateY(0);
+}
+
+.btn-confirm-custom {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.btn-confirm-custom:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.btn-confirm-custom:active {
+  transform: translateY(0);
+}
+
+.no-seats-message {
+  background: #fef3c7;
+  border-top: 2px solid #f59e0b;
+  padding: 16px 30px;
+  margin: 0 -30px -30px -30px;
+  border-radius: 0 0 16px 16px;
+  text-align: center;
+}
+
+.no-seats-message small {
+  color: #78350f;
+  font-size: 13px;
+  line-height: 1.6;
+  display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .modal-content-custom {
+    width: 95%;
+    max-height: 95vh;
+  }
+
+  .modal-header-custom {
+    padding: 20px;
+  }
+
+  .modal-header-custom h2 {
+    font-size: 20px;
+  }
+
+  .modal-body-custom {
+    padding: 20px;
+  }
+
+  .warning-icon-large {
+    font-size: 48px;
+  }
+
+  .modal-actions-custom {
+    flex-direction: column;
+    padding: 0 20px 20px 20px;
+  }
+
+  .btn-cancel-custom,
+  .btn-confirm-custom {
+    width: 100%;
+  }
+
+  .no-seats-message {
+    padding: 12px 20px;
+    margin: 0 -20px -20px -20px;
+  }
+}
+
+/* Ensure modal is above everything */
+.modal-overlay-custom {
+  z-index: 99999;
+}
+
+.last-seat-warning {
+  background: #fee2e2;
+  border: 3px solid #dc2626;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  text-align: center;
+  color: #991b1b;
+  animation: warningPulse 2s infinite;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+.last-seat-warning strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.last-seat-warning p {
+  margin: 8px 0 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #7f1d1d;
+}

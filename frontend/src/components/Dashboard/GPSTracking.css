@@ -1,0 +1,901 @@
+/* GPSTracking.css - COMPLETE WITH HISTORY BADGES */
+
+.gps-tracking-container {
+  padding: 20px;
+  max-width: 100%;
+}
+
+/* ===== HEADER ===== */
+.gps-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.gps-header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header-icon {
+  color: #3b82f6;
+}
+
+.gps-header h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #1f2937;
+}
+
+.bus-counts {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.bus-count {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.bus-count.active {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.bus-count.completed {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.gps-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.refresh-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid #e5e7eb;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.refresh-btn:hover {
+  background: #f9fafb;
+  border-color: #3b82f6;
+}
+
+.refresh-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.last-update {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* ===== TAB NAVIGATION ===== */
+.gps-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  color: #6b7280;
+  transition: all 0.2s;
+  margin-bottom: -2px;
+}
+
+.tab-btn:hover {
+  color: #1f2937;
+  background: #f9fafb;
+}
+
+.tab-btn.active {
+  color: #3b82f6;
+  border-bottom-color: #3b82f6;
+  background: #eff6ff;
+}
+
+.tab-btn svg {
+  flex-shrink: 0;
+}
+
+/* ===== SEARCH ===== */
+.gps-filters {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.search-box {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 12px 16px 12px 52px !important;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 20px;
+  transition: border-color 0.2s;
+  background: white;
+  box-sizing: border-box;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.search-box input::placeholder {
+  color: #9ca3af;
+  opacity: 1;
+}
+
+/* ===== ERROR MESSAGE ===== */
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #fee2e2;
+  color: #991b1b;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+/* ===== MAIN CONTENT ===== */
+.gps-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  min-height: 600px;
+}
+
+/* ===== MAP CONTAINER ===== */
+.gps-map-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  height: 600px;
+  position: relative;
+}
+
+.map-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #9ca3af;
+}
+
+.map-placeholder svg {
+  color: #d1d5db;
+  margin-bottom: 16px;
+}
+
+.map-placeholder p {
+  margin: 4px 0;
+  font-size: 16px;
+}
+
+.map-note {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* ===== MAP POPUP STYLES ===== */
+.map-popup {
+  font-family: system-ui, -apple-system, sans-serif;
+  min-width: 250px;
+}
+
+.map-popup h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: #1f2937;
+}
+
+.popup-subtitle {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.popup-section {
+  margin-bottom: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.popup-section:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.popup-section strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #374151;
+  font-size: 14px;
+}
+
+.popup-section p {
+  margin: 4px 0;
+  font-size: 13px;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.popup-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.popup-btn:hover {
+  background: #2563eb;
+}
+
+/* ===== BUS LIST ===== */
+.gps-list-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 600px;
+}
+
+.gps-list-container.fullwidth {
+  grid-column: 1 / -1;
+  max-height: 800px;
+}
+
+.loading-state,
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: #9ca3af;
+  text-align: center;
+}
+
+.loading-state svg,
+.empty-state svg {
+  color: #d1d5db;
+  margin-bottom: 16px;
+}
+
+.empty-note {
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 8px;
+}
+
+/* ===== BUS CARDS ===== */
+.bus-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bus-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  transition: all 0.2s;
+  background: white;
+}
+
+.bus-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #3b82f6;
+}
+
+.bus-card.selected {
+  border: 2px solid #3b82f6;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+  background: #eff6ff;
+}
+
+.bus-card.completed-card {
+  background: #f9fafb;
+  border-left: 4px solid #10b981;
+}
+
+.bus-card.completed-card:hover {
+  border-color: #10b981;
+}
+
+.bus-card-header {
+  margin-bottom: 16px;
+}
+
+.bus-route-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.bus-route-info h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #1f2937;
+}
+
+.route-badge {
+  background: #3b82f6;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-badge.completed {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.bus-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.vehicle-number {
+  font-weight: 600;
+}
+
+.schedule-date {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ===== UPDATE BOXES ===== */
+.update-box {
+  margin-bottom: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #f9fafb;
+}
+
+.driver-update {
+  border-left: 3px solid #3b82f6;
+}
+
+.conductor-update {
+  border-left: 3px solid #10b981;
+}
+
+.update-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.update-badge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.driver-update .update-badge {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.conductor-update .update-badge {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.update-name {
+  font-size: 13px;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.update-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.detail-row svg {
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+/* ===== ACTIONS ===== */
+.bus-card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border: 1px solid #e5e7eb;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  transition: all 0.2s;
+}
+
+.action-btn:hover {
+  background: #f9fafb;
+}
+
+.view-map-btn {
+  border-color: #bfdbfe;
+  color: #1e40af;
+  background: #eff6ff;
+}
+
+.view-map-btn:hover {
+  border-color: #3b82f6;
+  color: white;
+  background: #3b82f6;
+}
+
+.history-btn {
+  border-color: #ddd6fe;
+  color: #6d28d9;
+  background: #f5f3ff;
+}
+
+.history-btn:hover {
+  border-color: #8b5cf6;
+  color: white;
+  background: #8b5cf6;
+}
+
+/* ===== HISTORY MODAL ===== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  max-width: 700px;
+  width: 90%;
+  max-height: 85vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  border-bottom: 1px solid #e5e7eb;
+  background: white;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #1f2937;
+}
+
+.modal-subtitle {
+  margin: 4px 0 0 0;
+  font-size: 14px;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.completed-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #d1fae5;
+  color: #065f46;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.close-btn {
+  background: #fee2e2 !important;
+  border: 2px solid #ef4444 !important;
+  color: #dc2626 !important;
+  cursor: pointer;
+  padding: 4px !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 6px !important;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  font-size: 18px !important;
+  font-weight: bold !important;
+}
+
+.close-btn:hover {
+  background: #fecaca !important;
+  border-color: #dc2626 !important;
+  color: #b91c1c !important;
+  transform: scale(1.05);
+}
+
+.close-btn:active {
+  transform: scale(0.95);
+}
+
+.close-btn svg {
+  width: 20px !important;
+  height: 20px !important;
+  stroke-width: 3px !important;
+  color: #dc2626 !important;
+}
+
+.modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  max-height: calc(85vh - 100px);
+}
+
+.history-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.history-entry {
+  padding: 16px;
+  padding-right: 100px;
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s;
+}
+
+.history-entry:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== DRIVER/CONDUCTOR HISTORY STYLES ===== */
+.driver-history {
+  border-left: 3px solid #3b82f6 !important;
+  background: #eff6ff !important;
+}
+
+.conductor-history {
+  border-left: 3px solid #10b981 !important;
+  background: #f0fdf4 !important;
+}
+
+/* ===== HISTORY HEADER ROW WITH BADGE ===== */
+.history-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.history-time {
+  font-weight: 600;
+  color: #1f2937;
+  font-size: 14px;
+}
+
+.driver-history .history-time {
+  color: #1e40af;
+}
+
+.conductor-history .history-time {
+  color: #065f46;
+}
+
+/* ===== HISTORY BADGES ===== */
+.history-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.driver-badge {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.conductor-badge {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+/* ===== HISTORY DETAILS ===== */
+.history-details p {
+  margin: 4px 0;
+  font-size: 13px;
+  color: #4b5563;
+  font-family: monospace;
+}
+
+/* ===== HISTORY MAP BUTTON ===== */
+.history-map-btn {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  padding: 8px 16px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.history-map-btn:hover {
+  background: #2563eb;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.history-map-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* ===== EMPTY HISTORY ===== */
+.empty-history {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: #9ca3af;
+  text-align: center;
+}
+
+.empty-history svg {
+  color: #d1d5db;
+  margin-bottom: 16px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .gps-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .gps-map-container {
+    height: 400px;
+  }
+  
+  .gps-list-container {
+    max-height: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .gps-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  
+  .gps-header-right {
+    justify-content: space-between;
+  }
+  
+  .bus-card-actions {
+    flex-direction: column;
+  }
+  
+  .history-entry {
+    padding-right: 16px;
+  }
+  
+  .history-map-btn {
+    position: static;
+    transform: none;
+    margin-top: 12px;
+    width: 100%;
+  }
+  
+  .history-map-btn:hover {
+    transform: scale(1.02);
+  }
+}
+
+/* ===== LEAFLET CUSTOM STYLES ===== */
+.leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.leaflet-popup-tip {
+  display: none;
+}
+
+.leaflet-control-zoom {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.leaflet-bar {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+/* GPS Hardware badge */
+.gps-badge {
+  background: #065f46;
+  color: #ffffff !important;
+  border: 1px solid #065f46;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Driver badge - make sure it's visible */
+.driver-badge {
+  background: #1e40af;
+  color: #ffffff;
+  border: 1px solid #1e40af;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.conductor-badge {
+  background: #854d0e;
+  color: #ffffff;
+  border: 1px solid #854d0e;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* History entry border colors */
+.gps-history {
+  border-left: 4px solid #6ee7b7;
+}
+
+.driver-history {
+  border-left: 4px solid #93c5fd;
+}
+
+.conductor-history {
+  border-left: 4px solid #fde047;
+}
+
+.tab-btn.active:has(svg[data-lucide="ban"]) {
+  color: #dc2626;
+  border-bottom-color: #dc2626;
+  background: #fee2e2;
+}

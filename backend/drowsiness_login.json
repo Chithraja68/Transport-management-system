@@ -1,0 +1,53 @@
+{
+    "django_url": "http://127.0.0.1:8000",
+    "driver_username": "driver001",
+    "driver_password": "driver123",
+    "driver_id": 5,
+    "driver_name": "Rajesh Kumar",
+    "active_schedule_id": 12,
+    "active_schedule_name": "Coimbatore-Ooty",
+    "camera_source": "http://192.168.238.198:8080/video",
+    "camera_history": [
+        {
+            "url": "http://192.168.238.198:8080/video",
+            "last_used": "2026-04-10T16:47:53.897078"
+        },
+        {
+            "url": "http://100.91.148.129:8080/video",
+            "last_used": "2026-04-10T12:41:59.609856"
+        },
+        {
+            "url": "http://192.0.0.4:8080/video",
+            "last_used": "2026-04-10T12:40:07.898289"
+        },
+        {
+            "url": "http://192.168.238.26:8080/video",
+            "last_used": "2026-04-04T19:06:32.311297"
+        },
+        {
+            "url": "http://10.158.163.163:8080/video",
+            "last_used": "2026-03-28T12:18:38.559735"
+        }
+    ],
+    "macrodroid_start_webhook": "https://trigger.macrodroid.com/468a0479-a635-41ae-8271-1f994889e127/alarm_start",
+    "macrodroid_stop_webhook": "https://trigger.macrodroid.com/468a0479-a635-41ae-8271-1f994889e127/alarm_stop",
+    "logged_in": true,
+    "login_time": "2026-04-10T16:46:26.607346",
+    "pending_schedules": [
+        {
+            "id": 12,
+            "route_name": "Coimbatore-Ooty",
+            "vehicle_number": "TN02CD1234",
+            "departure_time": "12:25:27",
+            "date": "2026-04-10"
+        },
+        {
+            "id": 16,
+            "route_name": "Chennai-Tambaram Express",
+            "vehicle_number": "TN01AB1234",
+            "departure_time": "23:29:27",
+            "date": "2026-04-10"
+        }
+    ],
+    "driver_auth_token": ""
+}
